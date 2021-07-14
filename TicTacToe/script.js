@@ -1,6 +1,8 @@
 const main = document.querySelector('.main');
 const tile = document.querySelectorAll('.row .tile');
 const reset = document.getElementById('reset');
+const tile2 = document.getElementsByClassName('tile');
+const row = document.getElementsByClassName('row');
 
 let numberOfClicks = 0;
 
@@ -10,8 +12,9 @@ let numberOfClicks = 0;
 // };
 
 main.addEventListener('click', e => {
-    if (e.target.classList.contains('tile')) {
+    if (e.target.classList.contains('tile') && !e.target.classList.contains('clicked')) {
         // const numberOfClicks = 0;
+        e.target.classList.add('clicked');
         numberOfClicks = numberOfClicks + 1;
         // console.log(numberOfClicks);
     }
@@ -24,8 +27,8 @@ main.addEventListener('click', e => {
     }
 });
 
-function erase() {
-    tile.innerText = "";
+function resetTheGame() {
+    tile2.innerText = "";
 };
 
-reset.addEventListener('click', erase)
+reset.addEventListener('click', resetTheGame);
