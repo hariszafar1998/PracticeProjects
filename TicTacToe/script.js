@@ -1,7 +1,7 @@
 const main = document.querySelector('.main');
-const tile = document.querySelectorAll('.row .tile');
+const tiles = document.querySelectorAll('.row .tile');
+const tile = document.getElementById('tiles');
 const reset = document.getElementById('reset');
-const tile2 = document.getElementsByClassName('tile');
 const row = document.getElementsByClassName('row');
 
 let numberOfClicks = 0;
@@ -17,18 +17,20 @@ main.addEventListener('click', e => {
         e.target.classList.add('clicked');
         numberOfClicks = numberOfClicks + 1;
         // console.log(numberOfClicks);
+
+        if ( numberOfClicks % 2 == 0 ) {
+            // console.log('even');
+            e.target.innerText = "X";
+        } else {
+            e.target.innerText = "O";
+        }
     }
 
-    if ( numberOfClicks % 2 == 0 ) {
-        // console.log('even');
-        e.target.innerText = "X";
-    } else {
-        e.target.innerText = "O";
-    }
+    
 });
 
 function resetTheGame() {
-    tile2.innerText = "";
+    main.innerHTML = '<div class="row"><div class="tile" id="tiles"></div><div class="tile" id="tiles"></div><div class="tile" id="tiles"></div></div><div class="row" id="row">    <div class="tile" id="tiles"></div><div class="tile" id="tiles"></div><div class="tile" id="tiles"></div></div><div class="row" id="row"><div class="tile" id="tiles"></div><div class="tile" id="tiles"></div><div class="tile" id="tiles"></div></div>';
 };
 
 reset.addEventListener('click', resetTheGame);
