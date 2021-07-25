@@ -8,18 +8,27 @@ let taskArray = [];
 // Functions
 
 function addTask() {
-    taskArray.forEach( eachtask => {
-    const newDiv = document.createElement('div');
-    newDiv.classList.add('task');
-    newDiv.innerText = input.value;
-    main2.appendChild(newDiv);
+    const task = input.value;
+    const taskObject = {task: `${task}`}
+    // console.log(taskObject);
 
-    const task = {task: `${input.value}`};
+    addTaskInArray(taskObject);
+};
 
+function addTaskInArray(newTask) {
+    taskArray.push(newTask);
+    console.log(taskArray);
+    updateDOM();
+};
+
+function updateDOM(newTaskArray = taskArray) {
+    newTaskArray.forEach(task => {
+        // main2.innerHTML = '';
+        const newTaskDiv = document.createElement('div');
+        newTaskDiv.classList.add('task');
+        newTaskDiv.innerHTML = `${task.task}`;
+        main2.appendChild(newTaskDiv);
     })
-    
-    taskArray.push(task);
-    console.log(task);
 };
 
 // Event Listeners
