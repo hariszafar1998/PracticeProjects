@@ -54,6 +54,7 @@ if ( localStorage.getItem('ordersArray') ) {
         };
 
         closeModalBtn.addEventListener('click', e => {
+            e.preventDefault();
             modalWindow.style.display = "none";
         })
 
