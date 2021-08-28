@@ -1,118 +1,177 @@
-const orderName = document.getElementById('ordername');
-const designerName = document.getElementById('designername');
-const designTime = document.getElementById('designtime');
-const designDate = document.getElementById('designdate');
-const submitBtn = document.getElementById('submit');
+const addOrderBtn = document.getElementById('addorder');
 const orderContainer = document.getElementById('ordercontainer');
-const orderForm = document.getElementById('orderform');
+const modalWindow = document.getElementById('modal');
+const closeModalBtn = document.getElementById('hidemodalbutton');
+const newOrderForm = document.getElementById('orderform');
+const newOrderName = document.getElementById('ordername');
+const newDesignerName = document.getElementById('designername');
+const newDesignTime = document.getElementById('designtime');
+const newDesignDate = document.getElementById('designdate');
 
-if ( localStorage.getItem('data') ) {
-    let data = JSON.parse(localStorage.getItem('data'))
-    console.log(data);
-    function displayData() {
-        data.map( order => {
-            const newDiv = document.createElement('div');
-            newDiv.classList.add('order');
-            newDiv.innerHTML = `
-                <h4>${order.order_name}</h4>
-                <p>${order.designer_name}</p>
-                <p>${order.design_date}</p>
-                <p>${order.design_time}</p>
-            `
-            orderContainer.appendChild(newDiv);
-        } ).join('');
-    
-    };
-    
-    function getID() {
-        return Math.floor((Math.random())*10000000000000)
-    }
-    
-    function addTheOrder(e) {
-        e.preventDefault();
-        orderContainer.innerHTML = '';
-        const orderNameValue = orderName.value;
-        const designerNameValue = designerName.value;
-        const designDateValue = designDate.value;
-        const designTimeValue = designTime.value;
-        const orderObject = {
-            id: getID(),
-            order_name: orderNameValue,
-            designer_name: designerNameValue,
-            design_time: designDateValue,
-            design_date: designTimeValue,
+if ( localStorage.getItem('ordersArray') ) {
+        
+        let ordersArray = JSON.parse(localStorage.getItem('ordersArray'));
+
+        function displayOrders() {
+            orderContainer.innerHTML = '';
+            ordersArray.map( order => {
+                const newDiv = document.createElement('div');
+                newDiv.classList.add('order');
+                newDiv.innerHTML = `
+                    <p>${order.orderName}</p>
+                    <p>${order.designerName}</p>
+                    <p>${order.designTime}</p>
+                    <p>${order.designDate}</p>
+                    <button class="deleteBtn" onclick="deleteOrder(${order.id})">X</button>
+                `
+                orderContainer.appendChild(newDiv);
+            } ).join('');
         };
-        orderName.value = '';
-        designerName.value = '';
-        designDate.value = '';
-        designTime.value = '';
-        data.push(orderObject);
-        displayData();
-        localStorage.setItem('data' ,JSON.stringify(data))
-    };
-    
-    orderForm.addEventListener('submit', e => {
-        if ( orderName.value && designerName.value && designDate.value && designTime.value ) {
-            addTheOrder();
-        } else {
-            alert('Please provide all the details')
-        }
-    })
-    
-    displayData();
+
+        function deleteOrder(id) {
+            ordersArray = ordersArray.filter( order => order.id !== id );
+            console.log(ordersArray);
+            displayOrders();
+        };
+
+        function getID() {
+            return Math.floor(Math.random()*100000000);
+        };
+
+        function addOrderToArray(e) {
+            e.preventDefault();
+            const newObject = {
+                id: getID(),
+                orderName: newOrderName.value,
+                designerName: newDesignerName.value,
+                designTime: newDesignTime.value,
+                designDate: newDesignDate.value
+            };
+            ordersArray.push(newObject);
+            localStorage.setItem('ordersArray', JSON.stringify(ordersArray))
+            displayOrders();
+            modalWindow.style.display = "none";
+        };
+
+        closeModalBtn.addEventListener('click', e => {
+            modalWindow.style.display = "none";
+        })
+
+        addOrderBtn.addEventListener('click', e => {
+            modalWindow.style.display = "flex";
+        });
+
+        newOrderForm.addEventListener('submit', addOrderToArray);
+
+        displayOrders();
 } else {
-    let data = [];
-    function displayData() {
-        data.map( order => {
-            const newDiv = document.createElement('div');
-            newDiv.classList.add('order');
-            newDiv.innerHTML = `
-                <h4>${order.order_name}</h4>
-                <p>${order.designer_name}</p>
-                <p>${order.design_date}</p>
-                <p>${order.design_time}</p>
-            `
-            orderContainer.appendChild(newDiv);
-        } ).join('');
-    
-    };
-    
-    function getID() {
-        return Math.floor((Math.random())*10000000000000)
-    }
-    
-    function addTheOrder(e) {
-        e.preventDefault();
-        orderContainer.innerHTML = '';
-        const orderNameValue = orderName.value;
-        const designerNameValue = designerName.value;
-        const designDateValue = designDate.value;
-        const designTimeValue = designTime.value;
-        const orderObject = {
-            id: getID(),
-            order_name: orderNameValue,
-            designer_name: designerNameValue,
-            design_time: designDateValue,
-            design_date: designTimeValue,
+    let ordersArray = [];
+
+        function displayOrders() {
+            orderContainer.innerHTML = '';
+            ordersArray.map( order => {
+                const newDiv = document.createElement('div');
+                newDiv.classList.add('order');
+                newDiv.innerHTML = `
+                    <p>${order.orderName}</p>
+                    <p>${order.designerName}</p>
+                    <p>${order.designTime}</p>
+                    <p>${order.designDate}</p>
+                    <button class="deleteBtn" onclick="deleteOrder(${order.id})">X</button>
+                `
+                orderContainer.appendChild(newDiv);
+            } ).join('');
         };
-        orderName.value = '';
-        designerName.value = '';
-        designDate.value = '';
-        designTime.value = '';
-        data.push(orderObject);
-        displayData();
-        localStorage.setItem('data' ,JSON.stringify(data))
-    };
-    
-    orderForm.addEventListener('submit', e => {
-        if ( orderName.value && designerName.value && designDate.value && designTime.value ) {
-            addTheOrder();
-        } else {
-            alert('Please provide all the details')
-        }
-    });
-    displayData();
+
+        function deleteOrder(id) {
+            ordersArray = ordersArray.filter( order => order.id !== id );
+            console.log(ordersArray);
+            displayOrders();
+        };
+
+        function getID() {
+            return Math.floor(Math.random()*100000000);
+        };
+
+        function addOrderToArray(e) {
+            e.preventDefault();
+            const newObject = {
+                id: getID(),
+                orderName: newOrderName.value,
+                designerName: newDesignerName.value,
+                designTime: newDesignTime.value,
+                designDate: newDesignDate.value
+            };
+            ordersArray.push(newObject);
+            localStorage.setItem('ordersArray', JSON.stringify(ordersArray))
+            displayOrders();
+            modalWindow.style.display = "none";
+        };
+
+        closeModalBtn.addEventListener('click', e => {
+            modalWindow.style.display = "none";
+        })
+
+        addOrderBtn.addEventListener('click', e => {
+            modalWindow.style.display = "flex";
+        });
+
+        newOrderForm.addEventListener('submit', addOrderToArray);
+
+        displayOrders();
 }
 
-let data = [];
+let ordersArray = [];
 
+function displayOrders() {
+    orderContainer.innerHTML = '';
+    ordersArray.map( order => {
+        const newDiv = document.createElement('div');
+        newDiv.classList.add('order');
+        newDiv.innerHTML = `
+            <p>${order.orderName}</p>
+            <p>${order.designerName}</p>
+            <p>${order.designTime}</p>
+            <p>${order.designDate}</p>
+            <button class="deleteBtn" onclick="deleteOrder(${order.id})">X</button>
+        `
+        orderContainer.appendChild(newDiv);
+    } ).join('');
+};
+
+function deleteOrder(id) {
+    ordersArray = ordersArray.filter( order => order.id !== id );
+    console.log(ordersArray);
+    displayOrders();
+};
+
+function getID() {
+    return Math.floor(Math.random()*100000000);
+};
+
+function addOrderToArray(e) {
+    e.preventDefault();
+    const newObject = {
+        id: getID(),
+        orderName: newOrderName.value,
+        designerName: newDesignerName.value,
+        designTime: newDesignTime.value,
+        designDate: newDesignDate.value
+    };
+    ordersArray.push(newObject);
+    localStorage.setItem('ordersArray', JSON.stringify(ordersArray))
+    displayOrders();
+    modalWindow.style.display = "none";
+};
+
+closeModalBtn.addEventListener('click', e => {
+    modalWindow.style.display = "none";
+})
+
+addOrderBtn.addEventListener('click', e => {
+    modalWindow.style.display = "flex";
+});
+
+newOrderForm.addEventListener('submit', addOrderToArray);
+
+displayOrders();

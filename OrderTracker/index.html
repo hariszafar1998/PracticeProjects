@@ -5,58 +5,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Orders Tracker</title>
+    <title>Order Tracker</title>
 </head>
 <body>
-    <div class="container"></div>
-        <div class="left">
-        <div class="info">
-            <h2>Orders Tracker</h2>
-            <p>XPERT PRINTS</p>
-        </div>
-            <form id="orderform" class="orderform">
-                <div class="form-control">
-                    <label for="ordername">Design Name</label>
-                    <input type="text" id="ordername">
-                </div>
-                <div class="form-control">
-                    <label for="designername">Artist</label>
-                    <input type="text" id="designername">
-                </div>
-                <div class="form-control">
-                    <label for="designtime">Time</label>
-                    <input type="time" id="designtime">
-                </div>
-                <div class="form-control">
-                    <label for="designdate">Date</label>
-                    <input type="date" id="designdate">
-                </div>
-                <button id="submit" class="submitBtn">Insert Order</button>
-            </form>
-        </div>
-        <div class="ordercontainer" id="ordercontainer">
-            <!-- <div class="order">
-                <h4>ABC</h4>
-                <p>sadiq</p>
-                <p>date</p>
-                <p>time</p>
-            </div>
-            <div class="order"></div>
-            <div class="order"></div>
-            <div class="order"></div>
-            <div class="order"></div>
-            <div class="order"></div>
-            <div class="order"></div>
-            <div class="order"></div>
-            <div class="order"></div>
-            <div class="order"></div>
-            <div class="order"></div>
-            <div class="order"></div>
-            <div class="order"></div> -->
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+    <h2 class="heading">Order Tracker</h2>
+    <p class="companyname">XPERT PRINTS</p>
+    <button class="addorder" id="addorder">ADD NEW ORDER</button>
 
+    <div class="ordercontainer" id="ordercontainer">
+        <!-- <div class="order">
+            <p>Taxi logo</p>
+            <p>sadiq</p>
+            <p>date</p>
+            <p>time</p>
+            <button class="deleteBtn">X</button>
+        </div>
+        <div class="order">
+            <p>Taxi logo</p>
+            <p>sadiq</p>
+            <p>date</p>
+            <p>time</p>
+            <button class="deleteBtn">X</button>
+        </div>
+        <div class="order">
+            <p>Taxi logo</p>
+            <p>sadiq</p>
+            <p>date</p>
+            <p>time</p>
+            <button class="deleteBtn">X</button>
+        </div>
+        <div class="order">
+            <p>Taxi logo</p>
+            <p>sadiq</p>
+            <p>date</p>
+            <p>time</p>
+            <button class="deleteBtn">X</button>
+        </div>
+        <div class="order">
+            <p>Taxi logo</p>
+            <p>sadiq</p>
+            <p>date</p>
+            <p>time</p>
+            <button class="deleteBtn">X</button>
+        </div> -->
+    </div>
+
+    <div class="modal" id="modal">
+        <form id="orderform" class="orderform">
+            <button id="hidemodalbutton" class="hidemodalbutton">X</button>
+            <h2 class="">Add an Order</h2>
+            <div class="form-control">
+                <label for="ordername">Design Name</label>
+                <input type="text" id="ordername">
+            </div>
+            <div class="form-control">
+                <label for="designername">Artist</label>
+                <input type="text" id="designername">
+            </div>
+            <div class="form-control">
+                <label for="designtime">Time</label>
+                <input type="time" id="designtime">
+            </div>
+            <div class="form-control">
+                <label for="designdate">Date</label>
+                <input type="date" id="designdate">
+            </div>
+            <button id="submit" class="submitBtn">Insert Order</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

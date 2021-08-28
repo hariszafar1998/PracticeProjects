@@ -7,77 +7,123 @@
 body {
     font-family: 'Roboto', sans-serif;
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
-    background-color: #CEE5D0;
-    min-height: 80vh;
+    flex-direction: column;
+    background-color: lightgray;
 }
 
-.container {
-    display: flex;
-}
-
-.info h2 {
+.heading {
     margin-top: 50px;
-    margin-bottom: 0;
-    text-align: center;
+    margin-bottom: 5px;
 }
 
-.info p {
+.companyname {
     margin-bottom: 30px;
-    text-align: center;
+}
+
+.ordercontainer {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+.order {
+    justify-content: space-between;
+    display: flex;
+    width: 800px;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.order:hover {
+    background-color: lightgray;
+}
+
+.addorder {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 110%;
+    background-color: black;
+    color: white;
+    border-radius: 3px;
+    outline: none;
+}
+
+.addorder {
+    cursor: pointer;
+}
+
+.deleteBtn {
+    height: 25px;
+    width: 25px;
+    margin-top: 15px;
+    background-color: red;
+    color: white;
+}
+
+.deleteBtn:hover {
+    cursor: pointer;
+}
+
+.order p {
+    font-size: 110%;
+}
+
+.modal {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.orderform {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid black;
+    width: 300px;
+    height: auto;
+    position: relative;
 }
 
 .form-control label {
     display: block;
     margin-bottom: 5px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .form-control input {
-    padding: 5px;
-    font-size: 120%;
     width: 100%;
-    border-radius: 5px;
-    border: 1px solid black;
+    padding: 3px;
+    font-size: 110%;
 }
 
 .submitBtn {
-    margin-top: 10px;
-    padding: 5px;
+    margin-top: 15px;
+    font-size: 110%;
+    background-color: black;
+    color: white;
     width: 100%;
-    font-size: 120%;
-    background-color: #F7D59C;
-    outline: 0;
-    border: 1px solid black;
-    border-radius: 5px;
+    padding: 10px;
 }
 
 .submitBtn:hover {
     cursor: pointer;
 }
 
-.ordercontainer {
-    background-color: white;
-    width: 800px;
-    height: auto;
-    margin-top: 100px;
-    border: 1px solid black;
-    margin-left: 10px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-    padding: 20px;
+.hidemodalbutton {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: red;
+    color: white;
 }
 
-.order {
-    background-color: black;
-    height: auto;
-    width: auto;
-    display: block;
-    text-align: center;
-    color: white;
-    line-height: 0px;
-    padding: 10px;
+.hidemodalbutton:hover {
+    cursor: pointer;
 }
